@@ -154,9 +154,9 @@ class Student{
 
 }
 
-const s1=new Student("baman")
-console.log(s1.rollNo);
-console.log(s1.name);
-const s2=new Student("chaman",6)
-console.log(s2.name);
-console.log(s2.rollNo)
+// const s1=new Student("baman")
+// console.log(s1.rollNo);
+// console.log(s1.name);
+// const s2=new Student("chaman",6)
+// console.log(s2.name);
+// console.log(s2.rollNo)

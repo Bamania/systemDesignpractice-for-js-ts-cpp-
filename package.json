@@ -1,0 +1,26 @@
+{
+  "name": "systemdesign",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "types": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bamania/systemDesignpractice-for-js-ts-cpp-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Bamania/systemDesignpractice-for-js-ts-cpp-/issues"
+  },
+  "homepage": "https://github.com/Bamania/systemDesignpractice-for-js-ts-cpp-#readme",
+  "dependencies": {
+    "@types/express": "^5.0.6",
+    "express": "^5.2.1"
+  }
+}

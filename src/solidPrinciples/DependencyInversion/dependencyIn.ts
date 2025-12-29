@@ -37,3 +37,7 @@ const webApp=new Application(new mongoDb)
 webApp.save()
 const androidApp = new Application(new sqlDb)
 androidApp.save()
+
+// 1-chilka
+// 2-place to cut the vegetables !
+// 3-place to put the new vegetables !

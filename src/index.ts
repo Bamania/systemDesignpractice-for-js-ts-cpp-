@@ -160,3 +160,12 @@ class Student{
 // const s2=new Student("chaman",6)
 // console.log(s2.name);
 // console.log(s2.rollNo)
+
+const arr=[[1,2],3,4,5,[5,6]];
+const flatArr=arr.flat(Infinity);
+
+// function flatten(arr){
+// return arr.reduce((acc,val)=>{
+//    return Array.isArray(val)?acc.concat(flatten(val)):acc.concat(val);
+// },[]);
+// }

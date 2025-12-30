@@ -2,6 +2,7 @@
 // if you inherit a mother class ,if the child class adds up a new functionality
 // ,it will require us to modify the inheritace heirarchy! So to save our ass from such 
 // repetative modification we can use this design pattern !
+// just remember in this you make a contract which is followed by different strategies 
 
 // ================================================================================
 //  CHALLENGE: E-Commerce Payment System
@@ -59,7 +60,7 @@ class CreditCardPayment implements PaymentStrategy {
     }
 
     pay(amount: number): void {
-        const fee = amount * 0.02; // 2% fee
+        const fee = amount * 0.02; 
         const total = amount + fee;
         const lastFour = this.cardNumber.slice(-4);
         console.log(`Paying $${total.toFixed(2)} using Credit Card ending in ${lastFour} (includes $${fee.toFixed(2)} fee)`);
@@ -74,7 +75,7 @@ class PayPalPayment implements PaymentStrategy {
     }
 
     pay(amount: number): void {
-        const fee = 1.50; // flat $1.50 fee
+        const fee = 1.50; 
         const total = amount + fee;
         console.log(`Paying $${total.toFixed(2)} via PayPal account ${this.email}`);
     }
@@ -103,7 +104,7 @@ class BankTransferPayment implements PaymentStrategy {
 
     pay(amount: number): void {
         console.log(`Paying $${amount.toFixed(2)} via Bank Transfer to account ${this.accountNumber}`);
-        console.log(`⚠️ Note: Bank transfers take 3-5 business days to process`);
+        console.log(` Note: Bank transfers take 3-5 business days to process`);
     }
 }
 
@@ -134,9 +135,6 @@ class ShoppingCart {
     }
 }
 
-// ================================================================================
-// TEST IT OUT:
-// ================================================================================
 
 const cart = new ShoppingCart();
 cart.addItem(100);
@@ -158,10 +156,7 @@ console.log("\n--- Switching to Bank Transfer ---");
 cart.setPaymentStrategy(new BankTransferPayment("****5678"));
 cart.checkout();
 
-// ================================================================================
-// 🎯 THE MAGIC: Adding Apple Pay requires ZERO changes to ShoppingCart!
-// ================================================================================
-
+// NOW SEE ADDING ApplePayPayment REQUIRES NO CHANGE IN THE SHOPPING CART class
 class ApplePayPayment implements PaymentStrategy {
     private deviceId: string;
     
@@ -174,7 +169,7 @@ class ApplePayPayment implements PaymentStrategy {
     }
 }
 
-console.log("\n--- Now with Apple Pay (added without modifying ShoppingCart!) ---");
-cart.setPaymentStrategy(new ApplePayPayment("iPhone-15-Pro"));
+console.log(" Now with Apple Pay (added without modifying ShoppingCart!)");
+cart.setPaymentStrategy(new ApplePayPayment("iPhone-sasta-Pro"));
 cart.checkout();
     

@@ -126,11 +126,11 @@ class ShoppingCart {
 
     checkout(): void {
         if (!this.paymentStrategy) {
-            console.log("❌ Please select a payment method first!");
+            console.log(" Please select a payment method first!");
             return;
         }
         const total = this.items.reduce((sum, item) => sum + item, 0);
-        console.log(`\n🛒 Cart total: $${total}`);
+        console.log(` Cart total: $${total}`);
         this.paymentStrategy.pay(total);
     }
 }
@@ -140,19 +140,19 @@ const cart = new ShoppingCart();
 cart.addItem(100);
 cart.addItem(50);
 
-console.log("\n--- Paying with Credit Card ---");
+console.log(" Paying with Credit Card ---");
 cart.setPaymentStrategy(new CreditCardPayment("1234-5678-9012-3456"));
 cart.checkout();
 
-console.log("\n--- Switching to PayPal ---");
+console.log(" Switching to PayPal ---");
 cart.setPaymentStrategy(new PayPalPayment("user@email.com"));
 cart.checkout();
 
-console.log("\n--- Switching to Crypto ---");
+console.log(" Switching to Crypto ---");
 cart.setPaymentStrategy(new CryptoPayment("0xABC123DEF456"));
 cart.checkout();
 
-console.log("\n--- Switching to Bank Transfer ---");
+console.log(" Switching to Bank Transfer ---");
 cart.setPaymentStrategy(new BankTransferPayment("****5678"));
 cart.checkout();
 

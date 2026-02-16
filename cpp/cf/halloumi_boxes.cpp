@@ -25,6 +25,7 @@ int main()
                 else {
                      cout<< "NO" <<endl; 
                      print=true;
+                     break;
                 }
             } 
             if(!print) cout<<"YES"<<endl;

@@ -27,7 +27,7 @@ int main(){
                 cout << "YES" << endl;
             } else {
                 cout << "NO" << endl;
-            }n 
+            }
         } else {
             cout << "NO" << endl;
         }

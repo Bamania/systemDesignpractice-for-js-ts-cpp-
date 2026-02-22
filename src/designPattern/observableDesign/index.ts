@@ -14,7 +14,7 @@ abstract class observable{
 }
 
 abstract class observers{
-    private channel:observable
+     channel:observable
     // now this observer object should also has the observerable instance
     update():void{}     
 }
@@ -38,4 +38,13 @@ class YoutuberX extends observable{
     getVideo():string{
         return this.videoTitle
     }
+}
+
+class userA extends observers{
+    channel:observable=new YoutuberX()
+    Title:string=" "
+    update():void{
+        this.Title=this.channel.getVideo()
+    }
+
 }

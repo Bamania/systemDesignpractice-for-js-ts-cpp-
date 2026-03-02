@@ -21,20 +21,23 @@ if(args.help){
   
 } else if(args.in || args._.includes("-")) {
   
-  processFile(process.stdin)
+  processFile(process.stdin).catch(error)
 
 } else if(args.file) {
 
   let stream=fs.createReadStream(path.resolve(BASE_PATH,args.file))  
-  processFile(stream) 
+  processFile(stream).then((data)=>{
+    console.log("\n completed the file processign using the stream !")
+
+  }).catch(error) 
 
 } else {
     error("Incorrect Usage",true)
 }
 
 
-function processFile(inStream){
-      //now since the inStream is a readable  stream we just wish to pipe it out to a writable stream so first we need a writabel stream which
+async function processFile(inStream){
+  //now since the inStream is a readable  stream we just wish to pipe it out to a writable stream so first we need a writabel stream which
   // we can make using the process.stdout
   var outStream=inStream //copying the stream so that we could use it again and again !
     
@@ -49,24 +52,37 @@ function processFile(inStream){
       cb()
       }
   })
- outStream=outStream.pipe(upperStream)
 
+  outStream=outStream.pipe(upperStream)
   let targetStream
+
   if(args.out){
+    
     targetStream=process.stdout
+    
   }else if (args.compress) {
+    
     let gzipstream=zlib.createGzip()
-      
     outStream=outStream.pipe(gzipstream)
     OUTPUT=`${OUTPUT}.gz`
     targetStream=fs.createWriteStream(OUTPUT) 
-      
-  }
-  else {
+    
+  }else {
     targetStream=fs.createWriteStream(OUTPUT)
   }
       
+      
   outStream.pipe(targetStream)
+  return new Promise((resolve,reject)=>{
+
+    outStream.on("finish",()=>{
+      resolve()
+    })
+
+  })  
+  // basically we need to make this outStream.pipe(targetStream) signal us to finish !
+
+
 }
 
 function error(msg,includeHelp=false){

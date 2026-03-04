@@ -83,6 +83,16 @@ async function processFile(inStream){
   // basically we need to make this outStream.pipe(targetStream) signal us to finish !
 
 
+  var finalstream=outStream.pipe(targetStream)
+  return new Promise((resolve,reject)=>{
+
+    finalstream.on("end",()=>{
+      resolve()
+    })
+
+  })
+
+
 }
 
 function error(msg,includeHelp=false){
